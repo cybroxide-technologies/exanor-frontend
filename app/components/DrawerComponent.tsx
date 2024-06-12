@@ -37,7 +37,6 @@ const DrawerComponent = ({ trigger, name, id }: { trigger: ReactNode; id: string
             <Counter count={count} setCount={setCount} />
             {data&&(data.is_available?<ButtonRounded text={`Add Item | ${data.pricing_details.amount_including_tax}₹`}/>:<div>
           {toast.error('Product is out of stock', {
-            position: toast.POSITION.TOP_CENTER,
             autoClose: 5000, // Close the toast after 5 seconds
           })}
         </div>)}
