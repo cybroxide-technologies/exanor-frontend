@@ -2,16 +2,18 @@ import React from 'react'
 import { ProductProps } from '../types'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {  FaShoppingCart, FaStar } from 'react-icons/fa';
+import {   FaStar } from 'react-icons/fa';
 import DrawerComponent from './DrawerComponent';
 import ButtonRounded from './ButtonRounded';
 import Motion from './Motion';
+import { PriceProvider } from '../context/PriceContext';
 
 const Product = ({product}:{product:ProductProps}) => {
     const {product_name,price_starts_from,description,parent_category,img_url,quantity,food_preference,average_rating,blurDataURL,
        rating_count,ranking,child_category,id}=product
 
   return (
+    <PriceProvider>
     <Motion className='flex glass mx-auto hover:-translate-y-2 hover:border-1  duration-200 border-gray-400  relative border  shadow-lg w-full h-full  p-4 lg:p-0  rounded-xl   items-center  flex-row-reverse  md:flex-col'>
       <div className=' relative   w-[150px] h-[150px]   md:w-full md:h-56 rounded-t-xl  overflow-hidden  lg:bg-gray-200'>
         <LazyLoadImage effect='blur' height={'100%'} width={'100%'}  alt={product_name}  src={img_url} className=' w-full h-full  rounded-xl lg:rounded-y-xl   mx-auto  object-center lg:object-contain absolute'/>
@@ -37,7 +39,7 @@ const Product = ({product}:{product:ProductProps}) => {
         {description.slice(0,85)}<span className=' text-blue-300 hover:text-blue-400 duration-150 cursor-pointer'> , Read More...</span></>:`${description}`}</p>
       </div>
     </Motion>
-   
+    </PriceProvider>
   )
 }
 
