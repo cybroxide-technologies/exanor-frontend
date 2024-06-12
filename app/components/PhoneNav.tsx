@@ -1,84 +1,48 @@
 "use client";
-import React, { useState } from "react";
-import { disablePageScroll, enablePageScroll } from "scroll-lock";
-import { AnimatePresence, motion } from "framer-motion";
+import { useMotionValue, useTransform, motion, useDragControls } from "framer-motion";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import MenuSvg from "./MenuSvg";
-import { navigation } from "../constants";
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  exit: { opacity: 0, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.1,
-      staggerChildren: 0.1,
-    },
-  },
-};
+import React, { useEffect, useState } from "react";
+import { BsFillCollectionPlayFill } from "react-icons/bs";
+import { GoHomeFill } from "react-icons/go";
+import { IoCreate, IoLibrary, IoSettings } from "react-icons/io5";
 
-const item = {
-  hidden: { y: 10, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-};
+const Menus = [
+  { name: "Home", icon: <GoHomeFill />, dis: "translate-x-0", href: "/", index: 0 },
+  { name: "My orders", icon: <IoCreate />, dis: "translate-x-16", href: "my-quizzes", index: 1 },
+  { name: "My Account", icon: <IoSettings />, dis: "translate-x-48", href: "my-profile", index: 2 },
+  { name: "Support", icon: <BsFillCollectionPlayFill />, dis: "translate-x-64", href: "my-attempts", index: 3 },
+];
 const PhoneNav = () => {
   const pathName = usePathname();
-  const [openNavigation, setOpenNavigation] = useState(false);
-  const handleClick = () => {
-    if (!openNavigation || !(window.innerWidth <= 1024)) return;
-    enablePageScroll();
-    setOpenNavigation(false);
-  };
-  const toggleNavigation = () => {
-    if (openNavigation) {
-      setOpenNavigation(false);
-      enablePageScroll();
-    } else {
-      setOpenNavigation(true);
-      disablePageScroll();
-    }
-  };
+  const [active, setActive] = useState(0);
   return (
-    <div>
-      <AnimatePresence>
-        {openNavigation && (
-          <motion.nav
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={`${
-              openNavigation ? "flex" : "hidden"
-            }  fixed top-0 left-0 bg-black/40 backdrop-blur-lg bottom-0 right-0 z-40 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent`}
-          >
-            <div className=" relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row">
-              {navigation.map((link: any) => (
-                <motion.a
-                  variants={item}
-                  onClick={handleClick}
-                  className={`block relative font-code text-2xl uppercase text-n-1 transition-colors hover:text-color-1
-      px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${
-        link.link === pathName ? "z-2 lg:text-purple-600" : "lg:text-gray-300"
-      } lg:leading-5 lg:hover:text-n-1 xl:px-12`}
-                  href={link.link}
-                  key={link.id}
-                >
-                  {link.text}
-                </motion.a>
-              ))}
-            </div>
-            {/* <HambugerMenu /> */}
-          </motion.nav>
-        )}
-      </AnimatePresence>
-      <button className="ml-auto z-50 fixed top-20 lg:hidden" onClick={toggleNavigation}>
-        <MenuSvg openNavigation={openNavigation} />
-      </button>
-    </div>
+    <motion.div className="bg-gray-100 min-h-[3rem] lg:hidden py-3 select-none fixed bottom-0 z-50 w-full px-2">
+      <ul className="flex relative justify-around w-full">
+        {Menus.map((menu, i) => (
+          <li key={i} className="">
+            {
+              <Link
+                href={`/${menu.href}`}
+                className="flex flex-col items-center text-center "
+                onClick={() => setActive(i)}
+              >
+                <>
+                  <div
+                    className={`text-xl cursor-pointer duration-500 text-gray-300 ${i === active && " text-gray-950"}`}
+                  >
+                    {menu.icon}
+                  </div>
+                  <div className={` ${active === i ? " text-gray-950  duration-700 opacity-100" : " text-gray-400"} text-xs`}>
+                    {menu.name}
+                  </div>
+                </>
+              </Link>
+            }
+          </li>
+        ))}
+      </ul>
+    </motion.div>
   );
 };
 

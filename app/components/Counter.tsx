@@ -18,7 +18,7 @@ const Counter = () => {
         <ButtonRounded
           onClick={() => setCount((c) => c + 1)}
           icon={<FaShoppingCart />}
-          text="Add to Cart"
+          text="Add"
           className=" "
         />
       ) : (

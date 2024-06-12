@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import QueryProvider from "./utils/QueryProvider";
+import PhoneNav from "./components/PhoneNav";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <QueryProvider>
           <NavBar />
+          <PhoneNav />
           {children}
         </QueryProvider>
       </body>

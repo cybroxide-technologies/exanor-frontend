@@ -18,14 +18,14 @@ const Products = ({ products }: { products: [ProductProps] }) => {
     }
   }, [products]);
   return (
-    <section className=" py-5 mt-8 min-h-screen">
+    <section className=" py-5 lg:mt-8 min-h-screen">
       <h1 className=" text-gray-900 text-4xl font-bold text-center my-8 pb-4">Top Products</h1>
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col px-4 items-center gap-3">
         <Search setQuery={SetQuery} query={query} />
         <Filters />
       </div>
       {filteredProducts ? (
-        <Motion list={true} className=" grid gap-5 grid-cols-4 mx-auto items-center px-20 py-10">
+        <Motion list={true} className=" grid gap-5  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto items-center px-4 lg:px-20 py-5 md:py-10">
           {filteredProducts?.map((product) => (
             <Product key={product.id} product={product} />
           ))}

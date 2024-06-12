@@ -14,7 +14,7 @@ export default async function Home() {
       order_by: "-ranking_score",
     }),
   }).then((res) => res.json());
-  
+
   return (
     <main className="">
       <Hero />
