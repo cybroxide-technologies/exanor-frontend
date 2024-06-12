@@ -18,7 +18,7 @@ const Products = ({ products }: { products: [ProductProps] }) => {
     }
   }, [products]);
   return (
-    <section className=" py-5 lg:mt-8 min-h-screen">
+    <section className="  py-5 pt-10 lg:mt-8 min-h-screen">
       <h1 className=" text-gray-900 text-4xl font-bold text-center my-8 pb-4">Top Products</h1>
       <div className="flex flex-col px-4 items-center gap-3">
         <Search setQuery={SetQuery} query={query} />

@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <main className="">
-      <Hero />
+      {/* <Hero /> */}
       <Products products={data.response} />
     </main>
   );

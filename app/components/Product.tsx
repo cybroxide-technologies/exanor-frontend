@@ -12,18 +12,17 @@ const Product = ({product}:{product:ProductProps}) => {
        rating_count,ranking,child_category,id}=product
 
   return (
-    <Motion className='flex glass mx-auto hover:-translate-y-2 hover:border-1  duration-200 border-gray-400  relative border  shadow-lg w-full h-full  rounded-xl   items-center flex-row  md:flex-col'>
-      <div className=' relative  w-full   h-full md:h-56 rounded-t-xl  overflow-hidden  bg-gray-200'>
-        <LazyLoadImage effect='blur' height={'100%'} width={'100%'}  alt={product_name}  src={img_url} className=' w-full h-full rounded-y-xl   mx-auto object-cover object-center lg:object-contain absolute'/>
+    <Motion className='flex glass mx-auto hover:-translate-y-2 hover:border-1  duration-200 border-gray-400  relative border  shadow-lg w-full h-full  p-4 lg:p-0  rounded-xl   items-center  flex-row-reverse  md:flex-col'>
+      <div className=' relative   w-[150px] h-[150px]   md:w-full md:h-56 rounded-t-xl  overflow-hidden  lg:bg-gray-200'>
+        <LazyLoadImage effect='blur' height={'100%'} width={'100%'}  alt={product_name}  src={img_url} className=' w-full h-full  rounded-xl lg:rounded-y-xl   mx-auto  object-center lg:object-contain absolute'/>
         </div>
         <DrawerComponent name={product_name} id={id} trigger={ <>
           <ButtonRounded notbtn
-          icon={<FaShoppingCart />}
           text="Add"
-          className="absolute text-xs md:text-sm z-20 md:-translate-x-1/2 left-3 top-[75%] md:left-1/2 md:top-[46%] shadow-md "
+          className="absolute text-xs md:text-sm z-20 -translate-x-[50%] right-3 top-[80%] w-fit md:left-1/2 md:top-[46%] shadow-md "
         />
         </>}/>
-      <div className=' flex flex-col items-start w-full justify-between  px-3 pb-1 md:px-4 md:py-3'>
+      <div className=' flex flex-1 flex-col items-start w-full justify-between  px-3 pb-1 md:px-4 md:py-3'>
       <div className=' flex items-center w-full justify-between '>
       <h2 className=' font-bold text-sm lg:text-lg my-2'>{product_name}</h2>
       {price_starts_from>0&&<span className=' text-sky-400 text-xs md:text-base font-semibold '>{price_starts_from}₹</span>}
