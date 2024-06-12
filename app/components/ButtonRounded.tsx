@@ -18,7 +18,7 @@ const ButtonRounded: React.FC<ButtonRoundedProps> = ({
   disabled,
 }) => {
   const baseClasses =
-    "px-6 py-2 text-[#1d61e7] bg-[#ebf2ff] hover:text-white text-center flex items-center text-sm gap-2 justify-between rounded-lg bg-1 font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-blue-500 transition-colors duration-200";
+    "px-6 py-2 text-[#1d61e7] bg-[#ebf2ff] hover:text-white text-center flex items-center text-sm gap-2 justify-between rounded-lg  font-bold  tracking-widest uppercase transform hover:scale-105 hover:bg-blue-500 transition-colors duration-200";
 
   if (notbtn) {
     return (

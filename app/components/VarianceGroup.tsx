@@ -4,19 +4,21 @@ import { Label } from "@/components/ui/label";
 import { VariationValue } from "../types";
 import { useGetBalance } from "../utils/qureries";
 import { usePrice } from "../context/PriceContext";
+import { toast } from "react-toastify";
 
 const VarianceGroup = ({ options, projectId }: { options: VariationValue[]; projectId: string }) => {
   const { variance, count, setVariance, setBalanceData } = usePrice();
-  const { data, isLoading } = useGetBalance(
+  const { data, isLoading, isError } = useGetBalance(
     variance.map((op: any) => op.value),
     projectId,
     count
   );
   useEffect(() => {
+    console.log(data);
     if (data) {
       setBalanceData(data); // Set the fetched data into balanceData state
     }
-  }, [data, setBalanceData]);
+  }, [data]);
   const handleVarianceChange = (value: string, parentId: string) => {
     setVariance((prevVariance: any) => {
       const filteredVariance = prevVariance.filter((item: any) => item.parentId !== parentId);
@@ -26,7 +28,7 @@ const VarianceGroup = ({ options, projectId }: { options: VariationValue[]; proj
   return (
     <div className="my-5">
       <RadioGroup
-      //@ts-ignore
+        //@ts-ignore
         onValueChange={(value) => handleVarianceChange(value, options.find((option) => option.id === value)?.parentId)}
       >
         {options.map((option) => (
