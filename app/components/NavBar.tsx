@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { navigation } from "../constants";
 import Button from "./Button";
 import PhoneNav from "./PhoneNav";
+import Cart from "./Cart";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +15,7 @@ const NavBar = () => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       if (scrollTop > lastScrollTop && scrollTop > 100) {
-        setIsScrolled(true);
+        setIsScrolled(true);  
       } else {
         setIsScrolled(false);
       }
@@ -29,7 +30,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`flex px-16 py-5 border-b border-n-6  w-full fixed z-50 top-0 left-0 items-center justify-between transition-all duration-300 ${
+      className={`flex bg-white/50 px-16 py-5 border-b border-n-6  w-full fixed z-50 top-0 left-0 items-center justify-between transition-all duration-300 ${
         isScrolled ? "bg-white dark:bg-slate-800/50 bg-opacity-50 backdrop-blur-md" : ""
       }`}
     >
@@ -50,6 +51,7 @@ const NavBar = () => {
       </ul>
       {
         <div className="flex gap-4 items-center">
+          <Cart/>
           <Link href={"/signup"} className="">
             Sign Up
           </Link>
